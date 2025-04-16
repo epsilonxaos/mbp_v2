@@ -62,6 +62,14 @@ export function useAppearance() {
         applyTheme(mode);
     }, []);
 
+    const toggleAppearance = useCallback(() => {
+        setAppearance((prevAppearance) => {
+            const newAppearance = prevAppearance === 'dark' ? 'light' : 'dark';
+            updateAppearance(newAppearance);
+            return newAppearance;
+        });
+    }, [updateAppearance]);
+
     useEffect(() => {
         const savedAppearance = localStorage.getItem('appearance') as Appearance | null;
         updateAppearance(savedAppearance || 'system');
@@ -69,5 +77,5 @@ export function useAppearance() {
         return () => mediaQuery()?.removeEventListener('change', handleSystemThemeChange);
     }, [updateAppearance]);
 
-    return { appearance, updateAppearance } as const;
+    return { appearance, updateAppearance, toggleAppearance } as const;
 }
