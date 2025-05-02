@@ -43,8 +43,8 @@ const breadcrumbsEditing: BreadcrumbItem[] = [
         href: '/admin/users',
     },
     {
-        title: 'Crear usuario',
-        href: '/admin/users/create',
+        title: 'Editar usuario',
+        href: '/admin/users/edit',
     },
 ];
 

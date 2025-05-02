@@ -31,13 +31,13 @@ class UsersController extends Controller
 			'password' => ['required', 'confirmed', Password::defaults()],
 		]);
 
-		$user = User::create([
+		User::create([
 			'name' => $request->name,
 			'email' => $request->email,
 			'password' => Hash::make($request->password),
 		]);
 
-		event(new Registered($user));
+		// event(new Registered($user));
 
 
 		return to_route('admin.users.index')->with('success', 'Usuario creado con éxito');

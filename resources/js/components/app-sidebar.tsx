@@ -24,7 +24,7 @@ const footerNavItems: NavItem[] = [
     },
     {
         title: 'Roles y permisos',
-        href: 'https://laravel.com/docs/starter-kits',
+        href: '/admin/roles',
         icon: ShieldCheck,
     },
 ];
