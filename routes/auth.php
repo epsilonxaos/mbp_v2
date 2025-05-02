@@ -15,10 +15,6 @@ Route::prefix('admin')->middleware('guest')->group(function () {
 	Route::get('/', [AuthenticatedSessionController::class, 'admin'])
 		->name('admin');
 
-	// Route::get('/dashboard', [AuthenticatedSessionController::class, 'dashboard'])
-	// ->middleware(['auth', 'verified'])
-	// 	->name('admin.dashboard');
-
 	Route::get('/login', [AuthenticatedSessionController::class, 'create'])
 		->name('admin.login');
 

@@ -19,7 +19,7 @@ const mainNavItems: NavItem[] = [
 const footerNavItems: NavItem[] = [
     {
         title: 'Administrar usuarios',
-        href: 'https://github.com/laravel/react-starter-kit',
+        href: '/admin/users',
         icon: User,
     },
     {
