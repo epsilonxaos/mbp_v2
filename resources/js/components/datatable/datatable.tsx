@@ -96,7 +96,7 @@ export function DataTable<TData, TValue>({ columns, data }: DataTableProps<TData
                 <DebouncedInput
                     value={globalFilter ?? ''}
                     onChange={(value) => setGlobalFilter(String(value))}
-                    className="font-lg border-block border p-2 shadow"
+                    className="font-lg border p-2"
                     placeholder="Buscar en todas las columnas..."
                 />
                 <DataTableViewOptions table={table} />

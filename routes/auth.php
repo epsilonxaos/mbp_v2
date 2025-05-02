@@ -20,10 +20,6 @@ Route::prefix('admin')->middleware('guest')->group(function () {
 
 	Route::post('/login', [AuthenticatedSessionController::class, 'store']);
 
-	Route::get('/register', [RegisteredUserController::class, 'create'])
-		->name('admin.register');
-
-	Route::post('/register', [RegisteredUserController::class, 'store']);
 
 	Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
 		->name('admin.password.request');
