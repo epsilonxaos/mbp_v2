@@ -40,7 +40,7 @@ export default function AuthSimpleLayout({ children, title, description }: Props
                 </AnimatePresence>
             </Button>
 
-            <div className="w-full max-w-sm">
+            <div className="bg-card dark:bg-card-dark w-full max-w-md rounded-xl border p-6 shadow-md md:p-8 dark:border-neutral-800">
                 <div className="flex flex-col gap-8">
                     <div className="flex flex-col items-center gap-4">
                         <Link href={route('home')} className="flex flex-col items-center gap-2 font-medium">
@@ -52,7 +52,7 @@ export default function AuthSimpleLayout({ children, title, description }: Props
 
                         <div className="space-y-2 text-center">
                             <h1 className="text-xl font-medium">{title}</h1>
-                            <p className="text-muted-foreground text-center text-sm">{description}</p>
+                            <p className="text-muted-foreground px-12 text-center text-sm">{description}</p>
                         </div>
                     </div>
                     {children}
