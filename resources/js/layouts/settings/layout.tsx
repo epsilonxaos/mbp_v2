@@ -17,11 +17,6 @@ const sidebarNavItems: NavItem[] = [
         href: '/admin/settings/password',
         icon: null,
     },
-    // {
-    //     title: 'Apariencia',
-    //     href: '/admin/settings/appearance',
-    //     icon: null,
-    // },
 ];
 
 export default function SettingsLayout({ children }: PropsWithChildren) {
@@ -33,7 +28,7 @@ export default function SettingsLayout({ children }: PropsWithChildren) {
     const currentPath = window.location.pathname;
 
     return (
-        <div className="px-4 py-6">
+        <div className="px-4 py-6 lg:px-8 lg:py-10 xl:px-20">
             <Heading title="Ajustes" description="Gestiona tu perfil y la configuración de la cuenta" />
 
             <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0 lg:space-x-12">
