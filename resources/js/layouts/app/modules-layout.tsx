@@ -8,10 +8,6 @@ export default function ModulesLayout({
     description,
     actions,
 }: PropsWithChildren & { title?: string; description?: string; actions?: React.ReactNode }) {
-    if (typeof window === 'undefined') {
-        return null;
-    }
-
     return (
         <div className="px-4 py-6 lg:px-8 lg:py-10 xl:px-20">
             <div className="flex flex-col items-center justify-between sm:flex-row">

@@ -67,4 +67,10 @@ class RolePermissionsController extends Controller
 
 		return to_route('admin.roles.index')->with('success', 'Rol actualizado con éxito');
 	}
+
+	public function destroy(Role $role)
+	{
+		$role->delete();
+		return to_route('admin.roles.index')->with('success', 'Rol eliminado con éxito');
+	}
 }

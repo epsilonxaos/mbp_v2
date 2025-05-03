@@ -3,6 +3,7 @@ import { DataTableColumnHeader } from '@/components/datatable/datatable-column-h
 import { Button } from '@/components/ui/button';
 import AppLayout from '@/layouts/app-layout';
 import ModulesLayout from '@/layouts/app/modules-layout';
+import RolDelete from '@/pages/admin/permissions/rolDelete';
 import type { BreadcrumbItem } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import type { ColumnDef } from '@tanstack/react-table';
@@ -56,7 +57,7 @@ const columns: ColumnDef<Roles>[] = [
                             Editar
                         </Button>
                     </Link>
-                    {/* <UserDelete userId={row.original.id} /> */}
+                    <RolDelete rolId={row.original.id} />
                 </div>
             );
         },
