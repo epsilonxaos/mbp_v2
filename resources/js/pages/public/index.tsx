@@ -8,6 +8,10 @@ import Footer from '@/modules/footer';
 import { EffectCreative, Navigation } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import { useMemo, useState } from 'react';
+import Lightbox from 'yet-another-react-lightbox';
+import 'yet-another-react-lightbox/styles.css';
+
 type PortfolioGallery = {
     created_at: string;
     id: number;
@@ -33,6 +37,14 @@ type PageProps = {
 
 export default function Index() {
     const { portfolios } = usePage<PageProps>().props;
+    const [open, setOpen] = useState(false);
+
+    const handleOpen = () => {
+        setOpen(true);
+    };
+    const handleClose = () => {
+        setOpen(false);
+    };
 
     return (
         <WebLayout title="Home">
@@ -71,12 +83,32 @@ export default function Index() {
                     if (!item.galleries) return null;
 
                     return item.galleries.map((x) => (
-                        <img key={x.id} src={APP_URL_STORAGE + x.image_path} alt={item.name} className="aspect-video w-full object-cover" />
+                        <button key={x.id} onClick={handleOpen}>
+                            <img src={APP_URL_STORAGE + x.image_path} alt={item.name} className="aspect-video w-full object-cover" />
+                        </button>
                     ));
                 })}
             </div>
 
             <Footer />
+            <LightBoxGallery portfolios={portfolios} open={open} handleClose={handleClose} />
         </WebLayout>
     );
 }
+
+const LightBoxGallery = ({ portfolios = [], open, handleClose }: { portfolios: Portfolio[]; open: boolean; handleClose: () => void }) => {
+    const slides = useMemo(() => {
+        const allSlides = portfolios.flatMap((item) => {
+            if (!item.galleries) return [];
+
+            return item.galleries.map((x) => ({
+                src: APP_URL_STORAGE + x.image_path,
+                alt: item.name,
+                title: item.name,
+            }));
+        });
+        return allSlides.map((slide, index) => ({ ...slide, id: index }));
+    }, [portfolios]);
+
+    return <Lightbox styles={{ root: { '--yarl__color_backdrop': 'rgba(0, 0, 0, .6)' } }} open={open} close={handleClose} slides={slides} />;
+};
