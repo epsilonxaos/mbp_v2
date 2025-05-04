@@ -5,7 +5,6 @@ import { FormEventHandler } from 'react';
 import InputError from '@/components/input-error';
 import TextLink from '@/components/text-link';
 import { Button } from '@/components/ui/button';
-import { Checkbox } from '@/components/ui/checkbox';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import AuthLayout from '@/layouts/auth-layout';
@@ -36,7 +35,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
     };
 
     return (
-        <AuthLayout title="Inicia sesión administración" description="Ingresa tu correo electrónico y contraseña para iniciar sesión">
+        <AuthLayout title="Panel administrativo" description="Ingresa tu correo electrónico y contraseña para iniciar sesión">
             <Head title="Iniciar sesión administrador" />
 
             <form className="flex flex-col gap-6" onSubmit={submit}>
@@ -60,11 +59,11 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                     <div className="grid gap-2">
                         <div className="flex items-center">
                             <Label htmlFor="password">Contraseña</Label>
-                            {canResetPassword && (
+                            {/* {canResetPassword && (
                                 <TextLink href={route('admin.password.request')} className="ml-auto text-sm" tabIndex={5}>
                                     ¿Olvidaste tu contraseña?
                                 </TextLink>
-                            )}
+                            )} */}
                         </div>
                         <Input
                             id="password"
@@ -79,7 +78,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         <InputError message={errors.password} />
                     </div>
 
-                    <div className="flex items-center justify-center space-x-3">
+                    {/* <div className="flex items-center justify-center space-x-3">
                         <Checkbox
                             className="cursor-pointer"
                             id="remember"
@@ -91,7 +90,7 @@ export default function Login({ status, canResetPassword }: LoginProps) {
                         <Label className="cursor-pointer" htmlFor="remember">
                             Recuerdame
                         </Label>
-                    </div>
+                    </div> */}
 
                     <Button type="submit" className="mt-4 w-full cursor-pointer" tabIndex={4} disabled={processing}>
                         {processing && <LoaderCircle className="h-4 w-4 animate-spin" />}
