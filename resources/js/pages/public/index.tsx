@@ -36,7 +36,7 @@ export default function Index() {
 
     return (
         <WebLayout title="Home">
-            <div className="h-svh">
+            <div className="hidden md:block md:h-svh">
                 <Swiper
                     modules={[Navigation, EffectCreative]}
                     speed={1500}
@@ -64,6 +64,16 @@ export default function Index() {
                         ));
                     })}
                 </Swiper>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:hidden">
+                {portfolios.map((item) => {
+                    if (!item.galleries) return null;
+
+                    return item.galleries.map((x) => (
+                        <img key={x.id} src={APP_URL_STORAGE + x.image_path} alt={item.name} className="aspect-video w-full object-cover" />
+                    ));
+                })}
             </div>
 
             <Footer />
