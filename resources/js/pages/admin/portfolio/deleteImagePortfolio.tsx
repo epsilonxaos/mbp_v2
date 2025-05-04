@@ -16,7 +16,10 @@ export default function DeleteImagePortfolio({ imgId }: { imgId: number }) {
         destroy(route('admin.portfolio.destroy.image', { id: imgId }), {
             preserveScroll: true,
             onSuccess: () => closeModal(),
-            onFinish: () => toast.success('Imagen eliminada correctamente'),
+            onFinish: () => {
+                toast.success('Imagen eliminada correctamente');
+                closeModal();
+            },
             onError: () => toast.error('Error al eliminar la imagen'),
         });
     };
