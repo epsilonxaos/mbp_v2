@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Middleware\CheckPermissions;
 use App\Http\Middleware\HandleAppearance;
 use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Auth\Middleware\RedirectIfAuthenticated;
@@ -21,6 +22,10 @@ return Application::configure(basePath: dirname(__DIR__))
 			HandleAppearance::class,
 			HandleInertiaRequests::class,
 			AddLinkHeadersForPreloadedAssets::class,
+		]);
+
+		$middleware->alias([
+			'permissions' => CheckPermissions::class,
 		]);
 
 		RedirectIfAuthenticated::redirectUsing(fn() => route('admin.dashboard'));

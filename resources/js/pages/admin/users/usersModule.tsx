@@ -1,6 +1,8 @@
 import { DataTable } from '@/components/datatable/datatable';
 import { DataTableColumnHeader } from '@/components/datatable/datatable-column-header';
 import { Button } from '@/components/ui/button';
+import { Permissions } from '@/constants/permissions';
+import usePermission from '@/hooks/use-permission';
 import AppLayout from '@/layouts/app-layout';
 import ModulesLayout from '@/layouts/app/modules-layout';
 import UserDelete from '@/pages/admin/users/userDelete';
@@ -55,19 +57,28 @@ const columns: ColumnDef<User>[] = [
         header: () => <div className="text-center">Acciones</div>,
         id: 'actions',
         cell: ({ row }) => {
-            return (
-                <div className="flex items-center justify-center gap-2">
-                    <Link href={`/admin/users/${row.original.id}`} prefetch>
-                        <Button variant="link" className="text-amber-600 dark:text-amber-600">
-                            Editar
-                        </Button>
-                    </Link>
-                    <UserDelete userId={row.original.id} />
-                </div>
-            );
+            return <ActionsRowComponent {...(row.original as User)} />;
         },
     },
 ];
+
+function ActionsRowComponent(data: User) {
+    const can = usePermission();
+
+    return (
+        <div className="flex items-center justify-center gap-2">
+            {can(Permissions.UserEdit) && (
+                <Link href={`/admin/users/${data.id}`} prefetch>
+                    <Button variant="link" className="text-amber-600 dark:text-amber-600">
+                        Editar
+                    </Button>
+                </Link>
+            )}
+
+            {can(Permissions.UserDelete) && <UserDelete userId={data.id} />}
+        </div>
+    );
+}
 
 export default function UsersModule() {
     const { users } = usePage<PageProps>().props;
@@ -88,16 +99,20 @@ export default function UsersModule() {
 }
 
 function ActionsComponent() {
+    const can = usePermission();
+
     return (
         <div className="mb-4 flex items-center justify-end">
-            <Link href={'/admin/users/create'} prefetch>
-                <Button
-                    variant="outline"
-                    className="border-teal-700 text-teal-600 hover:bg-teal-50 hover:text-teal-700 dark:border-teal-600 dark:text-teal-600 dark:hover:bg-teal-700/10 dark:hover:text-white"
-                >
-                    <PlusIcon /> Agregar usuario
-                </Button>
-            </Link>
+            {can(Permissions.UserCreate) && (
+                <Link href={'/admin/users/create'} prefetch>
+                    <Button
+                        variant="outline"
+                        className="border-teal-700 text-teal-600 hover:bg-teal-50 hover:text-teal-700 dark:border-teal-600 dark:text-teal-600 dark:hover:bg-teal-700/10 dark:hover:text-white"
+                    >
+                        <PlusIcon /> Agregar usuario
+                    </Button>
+                </Link>
+            )}
         </div>
     );
 }

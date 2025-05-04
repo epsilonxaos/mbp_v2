@@ -1,6 +1,8 @@
 import { DataTable } from '@/components/datatable/datatable';
 import { DataTableColumnHeader } from '@/components/datatable/datatable-column-header';
 import { Button } from '@/components/ui/button';
+import { Permissions } from '@/constants/permissions';
+import usePermission from '@/hooks/use-permission';
 import AppLayout from '@/layouts/app-layout';
 import ModulesLayout from '@/layouts/app/modules-layout';
 import RolDelete from '@/pages/admin/permissions/rolDelete';
@@ -50,19 +52,28 @@ const columns: ColumnDef<Roles>[] = [
         header: () => <div className="text-center">Acciones</div>,
         id: 'actions',
         cell: ({ row }) => {
-            return (
-                <div className="flex items-center justify-center gap-2">
-                    <Link href={`/admin/roles/${row.original.id}`}>
-                        <Button variant="link" className="text-amber-600 dark:text-amber-600">
-                            Editar
-                        </Button>
-                    </Link>
-                    <RolDelete rolId={row.original.id} />
-                </div>
-            );
+            return <ActionsRowComponent {...(row.original as Roles)} />;
         },
     },
 ];
+
+function ActionsRowComponent(data: Roles) {
+    const can = usePermission();
+
+    return (
+        <div className="flex items-center justify-center gap-2">
+            {can(Permissions.RoleEdit) && (
+                <Link href={`/admin/roles/${data.id}`}>
+                    <Button variant="link" className="text-amber-600 dark:text-amber-600">
+                        Editar
+                    </Button>
+                </Link>
+            )}
+
+            {can(Permissions.RoleDelete) && <RolDelete rolId={data.id} />}
+        </div>
+    );
+}
 
 export default function RolesAndPermissions() {
     const { roles } = usePage<PageProps>().props;
@@ -83,16 +94,20 @@ export default function RolesAndPermissions() {
 }
 
 function ActionsComponent() {
+    const can = usePermission();
+
     return (
         <div className="mb-4 flex items-center justify-end">
-            <Link href={'/admin/roles/create'} prefetch>
-                <Button
-                    variant="outline"
-                    className="border-teal-700 text-teal-600 hover:bg-teal-50 hover:text-teal-700 dark:border-teal-600 dark:text-teal-600 dark:hover:bg-teal-700/10 dark:hover:text-white"
-                >
-                    <PlusIcon /> Nuevo rol
-                </Button>
-            </Link>
+            {can(Permissions.RoleCreate) && (
+                <Link href={'/admin/roles/create'} prefetch>
+                    <Button
+                        variant="outline"
+                        className="border-teal-700 text-teal-600 hover:bg-teal-50 hover:text-teal-700 dark:border-teal-600 dark:text-teal-600 dark:hover:bg-teal-700/10 dark:hover:text-white"
+                    >
+                        <PlusIcon /> Nuevo rol
+                    </Button>
+                </Link>
+            )}
         </div>
     );
 }

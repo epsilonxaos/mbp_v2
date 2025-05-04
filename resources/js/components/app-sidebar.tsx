@@ -13,6 +13,7 @@ import {
     SidebarMenuItem,
     useSidebar,
 } from '@/components/ui/sidebar';
+import { Permissions } from '@/constants/permissions';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
 import { LayoutGrid, ShieldCheck, User } from 'lucide-react';
@@ -31,18 +32,18 @@ const footerNavItems: NavItem[] = [
         title: 'Administrar usuarios',
         href: '/admin/users',
         icon: User,
+        permissions: Permissions.UserView,
     },
     {
         title: 'Roles y permisos',
         href: '/admin/roles',
         icon: ShieldCheck,
+        permissions: Permissions.RoleView,
     },
 ];
 
 export function AppSidebar() {
     const { open } = useSidebar();
-
-    // console.log(open);
 
     return (
         <Sidebar collapsible="icon" variant="inset">
