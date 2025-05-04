@@ -45,4 +45,24 @@ return [
 		'name' => Permissions::RoleDelete->value,
 		'title' => 'Eliminar roles'
 	],
+	[
+		'group' => 'Portafolio',
+		'name' => Permissions::PortfolioView->value,
+		'title' => 'Ver portafolio'
+	],
+	[
+		'group' => 'Portafolio',
+		'name' => Permissions::PortfolioCreate->value,
+		'title' => 'Crear portafolio'
+	],
+	[
+		'group' => 'Portafolio',
+		'name' => Permissions::PortfolioEdit->value,
+		'title' => 'Editar portafolio'
+	],
+	[
+		'group' => 'Portafolio',
+		'name' => Permissions::PortfolioDelete->value,
+		'title' => 'Eliminar portafolio'
+	],
 ];

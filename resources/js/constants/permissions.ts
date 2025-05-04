@@ -8,4 +8,9 @@ export enum Permissions {
     RoleEdit = 'role.edit',
     RoleDelete = 'role.delete',
     RoleView = 'role.view',
+
+    PortFolioView = 'portfolio.view',
+    PortFolioCreate = 'portfolio.create',
+    PortFolioEdit = 'portfolio.edit',
+    PortFolioDelete = 'portfolio.delete',
 }

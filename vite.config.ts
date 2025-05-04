@@ -16,7 +16,7 @@ export default defineConfig(({ mode }) => {
 
     return {
         server: isProduction
-            ? false
+            ? undefined
             : {
                   host,
                   port: 5174,

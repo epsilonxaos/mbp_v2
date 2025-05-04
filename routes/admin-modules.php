@@ -1,6 +1,7 @@
 <?php
 
 use App\Enum\Permissions;
+use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\RolePermissionsController;
 use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
@@ -25,5 +26,15 @@ Route::prefix('admin')->middleware('auth')->group(function () {
 		Route::get('/{role}', [RolePermissionsController::class, 'edit'])->middleware('permissions:' . Permissions::RoleEdit->value)->name('admin.roles.edit');
 		Route::put('/{role}', [RolePermissionsController::class, 'update'])->middleware('permissions:' . Permissions::RoleEdit->value)->name('admin.roles.update');
 		Route::delete('/{role}', [RolePermissionsController::class, 'destroy'])->middleware('permissions:' . Permissions::RoleDelete->value)->name('admin.roles.destroy');
+	});
+
+	Route::prefix('/portfolio')->group(function () {
+		Route::get('/', [PortfolioController::class, 'index'])->middleware('permissions:' . Permissions::PortfolioView->value)->name('admin.portfolio.index');
+		Route::get('/create', [PortfolioController::class, 'create'])->middleware('permissions:' . Permissions::PortfolioCreate->value)->name('admin.portfolio.create');
+		Route::post('/create', [PortfolioController::class, 'store'])->middleware('permissions:' . Permissions::PortfolioCreate->value)->name('admin.portfolio.store');
+		Route::get('/{portfolio}', [PortfolioController::class, 'edit'])->middleware('permissions:' . Permissions::PortfolioEdit->value)->name('admin.portfolio.edit');
+		Route::post('/{portfolio}', [PortfolioController::class, 'update'])->middleware('permissions:' . Permissions::PortfolioEdit->value)->name('admin.portfolio.update');
+		Route::delete('/{portfolio}', [PortfolioController::class, 'destroy'])->middleware('permissions:' . Permissions::PortfolioDelete->value)->name('admin.portfolio.destroy');
+		Route::delete('/image/{portfolioGallery}', [PortfolioController::class, 'destroyImage'])->middleware('permissions:' . Permissions::PortfolioDelete->value)->name('admin.portfolio.destroy.image');
 	});
 });

@@ -13,4 +13,9 @@ enum Permissions: string
 	case RoleEdit = 'role.edit';
 	case RoleDelete = 'role.delete';
 	case RoleView = 'role.view';
+
+	case PortfolioView = 'portfolio.view';
+	case PortfolioCreate = 'portfolio.create';
+	case PortfolioEdit = 'portfolio.edit';
+	case PortfolioDelete = 'portfolio.delete';
 }

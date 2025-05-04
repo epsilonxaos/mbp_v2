@@ -8,7 +8,7 @@ use Inertia\Inertia;
 // 🌐 Rutas públicas
 
 Route::get('/', function () {
-	return Inertia::render('public/welcome');
+	return Inertia::render('public/index');
 })->name('home');
 Route::get('/contact', function () {
 	return Inertia::render('public/contact');
