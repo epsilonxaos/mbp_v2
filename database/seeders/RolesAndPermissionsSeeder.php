@@ -40,8 +40,8 @@ class RolesAndPermissionsSeeder extends Seeder
 		]);
 
 		$users = [
-			'jesusgleztr94@gmail.com' => 'Administrador',
-			'cesar@madeby.partners' => 'Operativo',
+			'programacion@madeby.partners' => 'Administrador',
+			'cesar@madeby.partners' => 'Administrador',
 		];
 
 		foreach ($users as $username => $role) {
