@@ -9,7 +9,7 @@ function capitalize(str: string) {
 export default function About() {
     const { i18n } = useTranslation();
 
-    return <WebLayout title="Home">{i18n.language === 'es' ? <AboutUsEspComponent /> : <AboutUsEngComponent />}</WebLayout>;
+    return <WebLayout title="About Us">{i18n.language === 'es' ? <AboutUsEspComponent /> : <AboutUsEngComponent />}</WebLayout>;
 }
 
 const ContactComponent = () => {
