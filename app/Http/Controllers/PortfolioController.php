@@ -14,7 +14,7 @@ class PortfolioController extends Controller
 	 */
 	public function index()
 	{
-		$portfolios = Portfolio::all();
+		$portfolios = Portfolio::orderBy('created_at', 'desc')->get();
 
 		return inertia('admin/portfolio/portfolioModule', [
 			'portfolios' => $portfolios,

@@ -44,24 +44,3 @@ hr {
 .bg-back-header:hover::before {
     opacity: 1;
 }
-
-.swiper-button-prev {
-    left: 0;
-    cursor: url(/img/prev.png), none !important;
-}
-.swiper-button-next {
-    right: 0;
-    cursor: url(/img/next.png), none !important;
-}
-.swiper-button-prev,
-.swiper-button-next {
-    /* background-color: rgba(0, 0, 0, 0.8); */
-    height: 100%;
-    top: 0px;
-    width: 20%;
-    margin-top: 0;
-}
-.swiper-button-prev:after,
-.swiper-button-next:after {
-    opacity: 0;
-}
