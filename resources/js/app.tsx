@@ -1,4 +1,5 @@
 import '../css/app.css';
+import '../js/assets/fonts/helvetica-font/helvetica.css';
 
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';

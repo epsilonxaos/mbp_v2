@@ -1,18 +1,14 @@
 <?php
 
+use App\Http\Controllers\AppController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
 
 // 🌐 Rutas públicas
-
-Route::get('/', function () {
-	return Inertia::render('public/index');
-})->name('home');
-Route::get('/contact', function () {
-	return Inertia::render('public/contact');
-})->name('contact');
+Route::get('/', [AppController::class, 'index'])->name('home');
+Route::get('/about', [AppController::class, 'about'])->name('about');
 
 
 
